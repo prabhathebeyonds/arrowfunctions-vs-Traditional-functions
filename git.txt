@@ -1,0 +1,31 @@
+# The difference in the behavior of the this keyword between arrow functions and traditional functions is an important distinction:
+
+## Arrow Functions:
+ ### Arrow functions do not have their own this context. They inherit the this value from their surrounding (lexical) context. In other words, they capture the this value from the enclosing function or scope.
+
+For example:
+
+const obj = {
+    name: 'John',
+    sayHello: () => {
+        console.log(`Hello, ${this.name}!`);
+    }
+};
+obj.sayHello(); // This will log "Hello, undefined!" because 'this' refers to the global object, not 'obj'.
+
+## Traditional Functions:
+### Traditional functions have their own this context. The value of this inside a traditional function depends on how the function is called. It is determined by the context in which the function is invoked.
+
+For example:
+const obj = {
+    name: 'John',
+    sayHello: function() {
+        console.log(`Hello, ${this.name}!`);
+    }
+};
+obj.sayHello(); // This will log "Hello, John!" because 'this' refers to 'obj'.
+
+### In summary, the key difference is that arrow functions inherit their this value from the surrounding context, while traditional functions have their own this context, which depends on how they are called. The choice between them often depends on whether you want to capture the this value from the surrounding scope or if you need more control over the this context within the function.
+
+
+
